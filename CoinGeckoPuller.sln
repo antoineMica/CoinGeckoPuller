@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31025.194
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "CoinGeckoPuller", "CoinGeckoPuller.pyproj", "{1FC49A52-64E4-49AE-8E21-7175E7913F3D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1FC49A52-64E4-49AE-8E21-7175E7913F3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FC49A52-64E4-49AE-8E21-7175E7913F3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ED96A96C-32A7-47BB-A304-BF0FCB137FCE}
+	EndGlobalSection
+EndGlobal
