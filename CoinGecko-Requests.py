@@ -16,34 +16,38 @@ with open('MarketCaps.json', 'w') as f:
     
 marketCapDF = pd.read_json('MarketCaps.json')
 
-today = datetime.now()    
-fromTS = datetime.timestamp(today - timedelta(days=10))
-fig = make_subplots()
-
-marketCapListByID = []
+# Data-structs
+avgVelPerID = {} #avg mcap vel per increment
+avgAccelPerID = {} #avg mcap vel per increment
 
 #temporary to limit amount of plots to add.
-count = 1
+curIndex = 0
 maxCount = 2
+
 #go through each symbol
-for symb in marketCapDF["id"]:
+while curIndex < len(marketCapDF["id"]):
     #get market chart which returns prices,market_caps & total_volumes.
-    market_chart = cg.get_coin_market_chart_by_id(id=symb, vs_currency='usd', days=10)
-    #gather plot data for current symbol
-    scatterData = {
-      "data" :  [{"type": "scatter",
-              "x": [],
-              "y": []}]
-    }
+    market_chart = cg.get_coin_market_chart_by_id(id=marketCapDF["id"][curIndex], vs_currency='usd', days=30)
+    
+    avgVel = []
+    avgAccel = []
+    avgAccel.append(0.00)
 
     #collect
-    for entry in market_chart["market_caps"]:
+    i = 1
+    while i < len(market_chart["market_caps"]):
         #need to divide by 1000 for some reason. Found a stack overflow solution.
-        scatterData["data"][0]["x"].append(datetime.fromtimestamp(entry[0] / 1000))
-        scatterData["data"][0]["y"].append(entry[1])
+        #scatterData["data"][0]["x"].append(datetime.fromtimestamp(entry[0] / 1000))
+        #scatterData["data"][0]["y"].append(entry[1])
+        avgVel.append(market_chart["market_caps"][i][1] - market_chart["market_caps"][i-1][1])
+        if i > 1:
+            avgAccel.append(avgVel[i-1] - avgVel[i-2])
+        i += 1
 
-    fig.add_trace(go.Scatter(x=scatterData["data"][0]["x"], y=scatterData["data"][0]["y"], name=symb))
-    if count == maxCount:
+    avgVelPerID[marketCapDF["symbol"][curIndex]] = avgVel
+    avgAccelPerID[marketCapDF["symbol"][curIndex]] = avgAccel
+
+   
+    if curIndex == maxCount:
         break
-    count +=1
-fig.show()
+    curIndex +=1
