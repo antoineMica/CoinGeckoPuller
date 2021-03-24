@@ -1,11 +1,17 @@
 from pycoingecko import CoinGeckoAPI
 import csv
 import time
+import sys
+
+filter_file = 'filter.csv'
+
+if len(sys.argv) > 1:
+    filter_file = sys.argv[1]
 
 cg = CoinGeckoAPI()
 
 filter = []
-with open('filter.csv', mode='r') as csv_file:
+with open(filter_file, mode='r') as csv_file:
     csv_reader = csv.DictReader(csv_file)
     for entry in csv_reader.fieldnames:
         filter.append(entry)

@@ -11,6 +11,9 @@
     <OutputPath>.</OutputPath>
     <Name>CoinGeckoPuller</Name>
     <RootNamespace>CoinGeckoPuller</RootNamespace>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <CommandLineArguments>david_filters.csv</CommandLineArguments>
+    <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
