@@ -20,12 +20,11 @@ for entry in markets_snapshot:
 
 
 #go through each symbol
-with open('mcap_hist.csv', mode='w') as csv_file:
+with open('mcap_hist.csv', mode='w', newline='') as csv_file:
 
     writer = csv.writer(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
 
     for symb in filter:
-        time.sleep(1)
         coin_hist = cg.get_coin_market_chart_by_id(id=id_map[symb], vs_currency='usd', days=30)
 
         row = [symb]
@@ -33,3 +32,4 @@ with open('mcap_hist.csv', mode='w') as csv_file:
             row.append(entry[1])
             
         writer.writerow(row)
+        time.sleep(1)
