@@ -57,9 +57,12 @@ while True:
     sms_alert_msg = ""
 
     for entry in markets_snapshot:
-        if mcap_recent_snapshot[entry['symbol']] != entry['market_cap_rank']:
-                if entry['symbol'] in filter:
-                    sms_alert_msg += '\n' + entry['symbol'] + ' ' + str(mcap_recent_snapshot[entry['symbol']]) + '->' + str(entry['market_cap_rank'])
+        try:
+            if mcap_recent_snapshot[entry['symbol']] != entry['market_cap_rank']:
+                    if entry['symbol'] in filter:
+                        sms_alert_msg += '\n' + entry['symbol'] + ' ' + str(mcap_recent_snapshot[entry['symbol']]) + '->' + str(entry['market_cap_rank'])
+        except KeyError:
+            print (entry['symbol'])
         mcap_recent_snapshot[entry['symbol']] = entry['market_cap_rank']
     
     if sms_alert_msg != "":
