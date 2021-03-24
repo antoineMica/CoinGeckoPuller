@@ -1,7 +1,4 @@
 from pycoingecko import CoinGeckoAPI
-#import plotly.graph_objects as go
-#import plotly.io as pio
-#from plotly.subplots import make_subplots
 import numpy as np
 import pandas as pd
 import json
@@ -26,15 +23,12 @@ with open('auth.csv', mode='r') as csv_file:
 
 twilio_client = Client(account_sid, auth_token)
 
-# usd pairs from GDAX, Kraken 
-# + some extras
-filter = ['btc', 'eth', 'ltc', 'bch', 'eos', 'dash', 'mkr', 'xlm', 'atom', 'xtz', 'etc', 'omg', 'zec', 'link', 'rep', 'zrx', 'algo', 'dai', 'knc', 'comp', 'band', 'nmr', 'uma', 'lrc', 'yfi', 'uni', 'ren', 'bal', 'wbtc', 'nu', 'fil', 'aave', 'grt', 'bnt', 'snx',
-          'ant', 'bat', 'ada', 'crv', 'mana', 'doge', 'ewt', 'flow', 'gno', 'icx', 'kava', 'keep', 'ksm', 'lsk', 'xmr', 'nano', 'ocean', 'paxg', 'dot', 'qtum', 'xrp', 'sc', 'storj', 'trx', 'waves',
-          'req']
 
-
-csv_fields = ['ticker', 'mcap vel', 'mcap acc']
-csv_data = []
+filter = []
+with open('filter.csv', mode='r') as csv_file:
+    csv_reader = csv.DictReader(csv_file)
+    for entry in csv_reader.fieldnames:
+        filter.append(entry)
 
 cg = CoinGeckoAPI()
 
