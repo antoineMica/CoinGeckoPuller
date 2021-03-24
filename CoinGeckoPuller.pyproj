@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>1fc49a52-64e4-49ae-8e21-7175e7913f3d</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>CoinGecko-Requests.py</StartupFile>
+    <StartupFile>MCapAlert.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -21,7 +21,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="CoinGecko-Requests.py" />
+    <Compile Include="MCapAlert.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
