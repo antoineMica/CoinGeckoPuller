@@ -492,3 +492,5 @@ MigrationBackup/
 FodyWeavers.xsd
 
 *.csv
+
+auth.csv
