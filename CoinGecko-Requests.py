@@ -25,11 +25,6 @@ with open('auth.csv', mode='r') as csv_file:
     to_tel = csv_reader.fieldnames[3]
 
 twilio_client = Client(account_sid, auth_token)
-#message = twilio_client.messages .create(
-#                    body =  "asd",
-#                    from_ = from_tel,
-#                    to =    to_tel)
-
 
 # usd pairs from GDAX, Kraken 
 # + some extras
