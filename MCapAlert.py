@@ -60,14 +60,14 @@ while True:
         try:
             if mcap_recent_snapshot[entry['symbol']] != entry['market_cap_rank']:
                     if entry['symbol'] in filter:
-                        sms_alert_msg += '\n' + entry['symbol'] + ' ' + str(mcap_recent_snapshot[entry['symbol']]) + '->' + str(entry['market_cap_rank'])
+                        sms_alert_msg += f"\n{entry['symbol']} {mcap_recent_snapshot[entry['symbol']]} -> {entry['market_cap_rank']}"
         except KeyError:
             print (entry['symbol'])
         mcap_recent_snapshot[entry['symbol']] = entry['market_cap_rank']
     
     if sms_alert_msg != "":
         twilio_client.messages .create(
-                body =  '!!!MCAP ALERT!!!\n' + sms_alert_msg,
+                body =  f"!!!MCAP ALERT!!!\n{sms_alert_msg}",
                 from_ = from_tel,
                 to =    to_tel)
             
