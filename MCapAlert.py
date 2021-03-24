@@ -60,6 +60,7 @@ while True:
         mcap_recent_snapshot[entry['symbol']] = entry['market_cap_rank']
     
     if sms_alert_msg != "":
+        print(sms_alert_msg)
         twilio_client.messages .create(
                 body =  f"!!!MCAP ALERT!!!\n{sms_alert_msg}",
                 from_ = from_tel,
