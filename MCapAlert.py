@@ -5,6 +5,7 @@ import json
 from datetime import datetime, timedelta
 import time
 import csv
+import sys
 
 from twilio.rest import Client
 
@@ -22,10 +23,15 @@ with open('auth.csv', mode='r') as csv_file:
     to_tel = csv_reader.fieldnames[3]
 
 twilio_client = Client(account_sid, auth_token)
+    
 
+filter_file = 'filter.csv'
+
+if len(sys.argv) > 1:
+    filter_file = sys.argv[1]
 
 filter = []
-with open('filter.csv', mode='r') as csv_file:
+with open(filter_file, mode='r') as csv_file:
     csv_reader = csv.DictReader(csv_file)
     for entry in csv_reader.fieldnames:
         filter.append(entry)
@@ -43,7 +49,7 @@ for entry in markets_snapshot:
 iteration = 0
 while True:
     print(iteration)
-    time.sleep(60)
+    time.sleep(60*15)
 
     markets_snapshot = cg.get_coins_markets(vs_currency='usd', order="market_cap_desc", per_page=250, page=1)
     markets_snapshot += cg.get_coins_markets(vs_currency='usd', order="market_cap_desc", per_page=250, page=2)
